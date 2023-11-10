@@ -1,10 +1,10 @@
-export function getRandomSubset(numberOfParticipants: number, subsetSize: number): number[] {
-  const participantsIds = Array.from({length: numberOfParticipants}, (_, index) => index);
+export function getRandomSubset(arraySize: number, subsetSize: number): number[] {
+  const originalSet = Array.from({length: arraySize}, (_, index) => index);
   const result = [];
 
   for (let i = 0; i < subsetSize; i++) {
-    const randomIndex = Math.floor(Math.random() * participantsIds.length);
-    const selectedItem = participantsIds.splice(randomIndex, 1)[0];
+    const randomIndex = Math.floor(Math.random() * originalSet.length);
+    const selectedItem = originalSet.splice(randomIndex, 1)[0];
 
     result.push(selectedItem);
   }
