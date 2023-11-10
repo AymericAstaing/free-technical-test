@@ -2,11 +2,11 @@
   "name": "free-technical-test",
   "version": "1.0.0",
   "description": "Technical test for free application process",
-  "main": "index.js",
   "type": "module",
   "author": "Aymeric Astaing",
   "license": "MIT",
   "scripts": {
+    "start": "ts-node src/index.ts",
     "lint": "eslint src/**/*.ts --fix"
   },
   "dependencies": {
@@ -22,6 +22,7 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-import": "^2.29.0",
     "eslint-plugin-prettier": "^5.0.1",
-    "prettier": "^3.0.3"
+    "prettier": "^3.0.3",
+    "ts-node": "^10.9.1"
   }
 }
