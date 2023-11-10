@@ -3,3 +3,4 @@ export const entriesPerDraw = 50;
 export const initialPrizePool = 200;
 // Price in euro
 export const entryPrice = 5;
+export const numberOfPossiblesWinners = 3;

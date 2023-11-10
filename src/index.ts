@@ -1,14 +1,19 @@
 import inquirer from 'inquirer';
 
+import {proceedDraw} from './actions/draw.js';
 import {proceedPurchase} from './actions/purchase.js';
-import {LotteryEntry} from './types.js';
+import {displayWinners} from './actions/winners.js';
+import {LotteryData, LotteryEntry} from './types.js';
 
 const lotteryTickets: LotteryEntry[] = [];
+let drawExecuted = false;
 
 async function main() {
-  console.log('Je suis ici');
+  const lotteryData: LotteryData = {
+    lotteryEntries: [],
+    drawExecuted: false,
+  };
 
-  // eslint-disable-next-line no-constant-condition
   while (true) {
     const answer = await inquirer.prompt({
       type: 'list',
@@ -22,10 +27,10 @@ async function main() {
         await proceedPurchase(lotteryTickets);
         break;
       case 'Draw':
-        await proceedPurchase(lotteryTickets);
+        await proceedDraw(lotteryTickets, drawExecuted);
         break;
       case 'Winners':
-        await proceedPurchase(lotteryTickets);
+        await displayWinners(lotteryTickets, drawExecuted);
         break;
       case 'Exit':
         console.log('Program completed.');
@@ -36,6 +41,7 @@ async function main() {
     }
 
     console.log('Tickets: ', lotteryTickets);
+    console.log('Draw executed: ', drawExecuted);
   }
 }
 

@@ -25,6 +25,7 @@
   "rules": {
     "no-underscore-dangle": 0,
     "no-console": "off",
+    "no-constant-condition": ["error", {"checkLoops": false}],
     "max-classes-per-file": ["error", 10],
     "class-methods-use-this": "off",
 
