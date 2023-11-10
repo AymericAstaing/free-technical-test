@@ -1,5 +1,6 @@
 import inquirer from 'inquirer';
-import {LotteryEntry} from 'src/types.ts';
+
+import {LotteryEntry} from '../types.js';
 
 export async function proceedPurchase(lotteryTickets: LotteryEntry[]): Promise<LotteryEntry[]> {
   const localLotteryTickets = lotteryTickets;

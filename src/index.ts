@@ -1,7 +1,7 @@
 import inquirer from 'inquirer';
 
-import {proceedPurchase} from './actions/purchase.ts';
-import {LotteryEntry} from './types.ts';
+import {proceedPurchase} from './actions/purchase.js';
+import {LotteryEntry} from './types.js';
 
 const lotteryTickets: LotteryEntry[] = [];
 
@@ -13,7 +13,7 @@ async function main() {
     const answer = await inquirer.prompt({
       type: 'list',
       name: 'action',
-      message: 'Choisissez une action :',
+      message: 'Hello, please choose an action:',
       choices: ['Purchase', 'Draw', 'Winners', 'Exit'],
     });
 
@@ -34,6 +34,8 @@ async function main() {
       default:
         console.log('Unrecognized action. Possible actions are: Purchase, Draw, Winners');
     }
+
+    console.log('Tickets: ', lotteryTickets);
   }
 }
 
