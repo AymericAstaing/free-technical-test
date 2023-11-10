@@ -1,12 +1,22 @@
 import inquirer from 'inquirer';
 
 import {entriesPerDraw} from '../constants.js';
-import {LotteryEntry} from '../types.js';
+import {LotteryData, LotteryEntry} from '../types.js';
 
-export async function proceedPurchase(lotteryTickets: LotteryEntry[]) {
-  if (lotteryTickets.length === entriesPerDraw) {
+export async function proceedPurchase(lotteryData: LotteryData) {
+  const {lotteryEntries, drawExecuted} = lotteryData;
+
+  if (drawExecuted) {
+    console.warn(
+      'The draw has already been made and it is no longer possible to buy tickets. Go to the winners section to see the results.'
+    );
+
+    return false;
+  }
+
+  if (lotteryEntries.length === entriesPerDraw) {
     console.log('Unfortunately, all the raffle tickets were sold out. Come back next month.');
-    return lotteryTickets;
+    return;
   }
 
   const answer = await inquirer.prompt([
@@ -19,11 +29,11 @@ export async function proceedPurchase(lotteryTickets: LotteryEntry[]) {
 
   const userLotteryTicket: LotteryEntry = {
     userName: answer.name,
-    entryNumber: lotteryTickets.length + 1,
+    entryNumber: lotteryEntries.length + 1,
     winnerRank: -1,
   };
 
-  lotteryTickets.push(userLotteryTicket);
+  lotteryEntries.push(userLotteryTicket);
 
   console.log(
     `Thank you ${userLotteryTicket.userName}, ticket successfully purchased! Your ticket and the associated ball are numbered: ${userLotteryTicket.entryNumber}.`

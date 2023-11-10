@@ -3,10 +3,7 @@ import inquirer from 'inquirer';
 import {proceedDraw} from './actions/draw.js';
 import {proceedPurchase} from './actions/purchase.js';
 import {displayWinners} from './actions/winners.js';
-import {LotteryData, LotteryEntry} from './types.js';
-
-const lotteryTickets: LotteryEntry[] = [];
-let drawExecuted = false;
+import {LotteryData} from './types.js';
 
 async function main() {
   const lotteryData: LotteryData = {
@@ -14,34 +11,33 @@ async function main() {
     drawExecuted: false,
   };
 
+  const possibleActions = ['Purchase', 'Draw', 'Winners', 'Exit'];
+
   while (true) {
     const answer = await inquirer.prompt({
       type: 'list',
       name: 'action',
       message: 'Hello, please choose an action:',
-      choices: ['Purchase', 'Draw', 'Winners', 'Exit'],
+      choices: possibleActions,
     });
 
     switch (answer.action) {
       case 'Purchase':
-        await proceedPurchase(lotteryTickets);
+        await proceedPurchase(lotteryData);
         break;
       case 'Draw':
-        await proceedDraw(lotteryTickets, drawExecuted);
+        await proceedDraw(lotteryData);
         break;
       case 'Winners':
-        await displayWinners(lotteryTickets, drawExecuted);
+        await displayWinners(lotteryData);
         break;
       case 'Exit':
         console.log('Program completed.');
         process.exit();
         break;
       default:
-        console.log('Unrecognized action. Possible actions are: Purchase, Draw, Winners');
+        console.log(`Unrecognized action. Possible actions are: ${possibleActions}`);
     }
-
-    console.log('Tickets: ', lotteryTickets);
-    console.log('Draw executed: ', drawExecuted);
   }
 }
 

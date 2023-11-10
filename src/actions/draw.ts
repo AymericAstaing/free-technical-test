@@ -1,19 +1,18 @@
 import {numberOfPossiblesWinners} from '../constants.js';
-import {LotteryEntry} from '../types.js';
+import {LotteryData} from '../types.js';
 import {getRandomSubset} from '../utils.js';
 
-export async function proceedDraw(
-  lotteryTickets: LotteryEntry[],
-  drawExecuted: boolean
-): Promise<boolean> {
+export async function proceedDraw(lotteryData: LotteryData) {
+  const {lotteryEntries, drawExecuted} = lotteryData;
+
   if (drawExecuted) {
-    console.log('The draw has already been made. Go to the winners section to see the results.');
+    console.warn('The draw has already been made. Go to the winners section to see the results.');
 
     return false;
   }
 
-  if (lotteryTickets.length <= 3) {
-    console.log(
+  if (lotteryEntries.length <= 3) {
+    console.warn(
       'Impossible to carry out the draw as at least 4 participants are required (fairness)'
     );
 
@@ -21,12 +20,10 @@ export async function proceedDraw(
   }
 
   console.log('Determining winners...');
-  const winnersIds = getRandomSubset(lotteryTickets.length, numberOfPossiblesWinners);
+  const winnersIds = getRandomSubset(lotteryEntries.length, numberOfPossiblesWinners);
 
-  winnersIds.forEach((winnerId, index) => (lotteryTickets[winnerId].winnerRank = index + 1));
+  winnersIds.forEach((winnerId, index) => (lotteryEntries[winnerId].winnerRank = index + 1));
   console.log('Winners determined!');
 
-  drawExecuted = true;
-
-  return true;
+  lotteryData.drawExecuted = true;
 }
