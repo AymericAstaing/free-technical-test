@@ -1,0 +1,55 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "prettier",
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "plugin:import/recommended",
+    "plugin:import/typescript"
+  ],
+  "plugins": ["@typescript-eslint"],
+  "parserOptions": {
+    "ecmaVersion": 2022,
+    "sourceType": "module",
+    "project": "tsconfig.json"
+  },
+  "globals": {
+    "fetch": true
+  },
+  "ignorePatterns": ["node_modules", "jest.config.js"],
+  "env": {
+    "es6": true,
+    "node": true,
+    "jest": true
+  },
+  "rules": {
+    "no-underscore-dangle": 0,
+    "no-console": "off",
+    "max-classes-per-file": ["error", 10],
+    "class-methods-use-this": "off",
+
+    "import/no-unresolved": 0,
+    "import/extensions": 0,
+    "import/no-mutable-exports": 0,
+    "import/prefer-default-export": 0,
+
+    "module-resolver/use-alias": 0,
+
+    "@typescript-eslint/indent": 0,
+    "@typescript-eslint/explicit-function-return-type": 0,
+    "@typescript-eslint/ban-ts-comment": 0,
+    "@typescript-eslint/ban-ts-ignore": 0,
+    "@typescript-eslint/no-var-requires": 0,
+    "@typescript-eslint/no-unused-vars": 0,
+
+    "import/default": "off",
+    "import/order": [
+      "error",
+      {
+        "groups": [["builtin", "external"], "internal", ["parent", "sibling", "index"]],
+        "newlines-between": "always-and-inside-groups",
+        "alphabetize": {"order": "asc", "caseInsensitive": true}
+      }
+    ]
+  }
+}
