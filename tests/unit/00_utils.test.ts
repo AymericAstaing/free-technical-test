@@ -1,3 +1,6 @@
+import assert from 'assert';
+import {describe, it} from 'node:test';
+
 import {getRandomSubset} from '../../src/utils.js';
 
 describe('Tests on utils functions', () => {
@@ -11,10 +14,10 @@ describe('Tests on utils functions', () => {
       const result = getRandomSubset(arraySize, subSetSize);
 
       // Then
-      expect(result).toEqual([]);
+      assert.deepStrictEqual(result, []);
     });
 
-    it('returns an empty array when numberOfParticipants is 0', () => {
+    it('returns an empty array when arraySize is 0', () => {
       // Given
       const arraySize = 0;
       const subSetSize = 5;
@@ -23,7 +26,7 @@ describe('Tests on utils functions', () => {
       const result = getRandomSubset(arraySize, subSetSize);
 
       // Then
-      expect(result).toEqual([]);
+      assert.deepStrictEqual(result, []);
     });
 
     it('returns a subset of the correct size', () => {
@@ -35,7 +38,7 @@ describe('Tests on utils functions', () => {
       const result = getRandomSubset(arraySize, subSetSize);
 
       // Then
-      expect(result).toHaveLength(subSetSize);
+      assert.strictEqual(result.length, subSetSize);
     });
 
     it('returns a subset with unique values', () => {
@@ -48,10 +51,10 @@ describe('Tests on utils functions', () => {
       const uniqueSet = new Set(result);
 
       // Then
-      expect(uniqueSet.size).toBe(uniqueSet);
+      assert.strictEqual(uniqueSet.size, subSetSize);
     });
 
-    /*     it('returns a subset within the range of numberOfParticipants', () => {
+    it('returns a subset within the range of arraySize', () => {
       // Given
       const arraySize = 50;
       const subSetSize = 5;
@@ -60,10 +63,10 @@ describe('Tests on utils functions', () => {
       const result = getRandomSubset(arraySize, subSetSize);
 
       // Then
-      result.forEach((item: number) => {
-        expect(item).toBeGreaterThanOrEqual(0);
-        expect(item).toBeLessThan(arraySize);
+      result.forEach((item) => {
+        assert(item >= 0);
+        assert(item < arraySize);
       });
-    }); */
+    });
   });
 });

@@ -1,4 +1,8 @@
 export function getRandomSubset(arraySize: number, subsetSize: number): number[] {
+  if (subsetSize <= 0 || arraySize <= 0) {
+    return [];
+  }
+
   const originalSet = Array.from({length: arraySize}, (_, index) => index);
   const result = [];
 
