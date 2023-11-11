@@ -1,3 +1,5 @@
+import {describe, expect, it} from '@jest/globals';
+
 import {lotteryData_00, lotteryData_01, lotteryData_02} from './draw.data.js';
 import {proceedDraw} from '../../../src/actions/draw.js';
 import * as utils from '../../../src/utils.js';
