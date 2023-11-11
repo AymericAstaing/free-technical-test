@@ -11,7 +11,7 @@ export async function proceedPurchase(lotteryData: LotteryData) {
       'The draw has already been made and it is no longer possible to buy tickets. Go to the winners section to see the results.'
     );
 
-    return false;
+    return;
   }
 
   if (lotteryEntries.length === entriesPerDraw) {

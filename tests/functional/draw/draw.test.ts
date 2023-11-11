@@ -4,7 +4,7 @@ import * as utils from '../../../src/utils.js';
 
 describe('Tests for proceedDraw action', () => {
   describe('Error cases', () => {
-    it('do nothing and log when draw already executed', async () => {
+    it('should do nothing when draw already executed', async () => {
       // When
       await proceedDraw(lotteryData_00);
 
@@ -13,7 +13,7 @@ describe('Tests for proceedDraw action', () => {
       expect(lotteryData_00.drawExecuted).toBe(true);
     });
 
-    it('do nothing and log when draw participants are less than 4', async () => {
+    it('should do nothing when draw participants are less than 4', async () => {
       // When
       await proceedDraw(lotteryData_01);
 
@@ -21,8 +21,10 @@ describe('Tests for proceedDraw action', () => {
       expect(lotteryData_01.lotteryEntries[0].winnerRank).toBe(-1);
       expect(lotteryData_01.drawExecuted).toBe(false);
     });
+  });
 
-    it('logs the process of determining winners and updates lotteryData', async () => {
+  describe('Success cases', () => {
+    it('should determine winners on lotteryData and update draw execution state', async () => {
       // When
       jest.spyOn(utils, 'getRandomSubset').mockReturnValue([0, 2, 3]);
 
