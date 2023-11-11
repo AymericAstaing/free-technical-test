@@ -1,5 +1,3 @@
-import {describe, expect, it} from '@jest/globals';
-
 import {getRandomSubset} from '../../src/utils.js';
 
 describe('Tests on utils functions', () => {

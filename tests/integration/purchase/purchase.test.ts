@@ -1,5 +1,3 @@
-import {describe, expect, it} from '@jest/globals';
-
 import {lotteryData_00} from './purchase.data.js';
 import {proceedPurchase} from '../../../src/actions/purchase.js';
 import {LotteryData} from '../../../src/types.js';
