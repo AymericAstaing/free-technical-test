@@ -1,5 +1,5 @@
 export function getRandomSubset(arraySize: number, subsetSize: number): number[] {
-  if (subsetSize <= 0 || arraySize <= 0) {
+  if (arraySize <= 0 || subsetSize <= 0) {
     return [];
   }
 

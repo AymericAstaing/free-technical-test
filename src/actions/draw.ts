@@ -8,22 +8,22 @@ export async function proceedDraw(lotteryData: LotteryData) {
   if (drawExecuted) {
     console.warn('The draw has already been made. Go to the winners section to see the results.');
 
-    return false;
+    return;
   }
 
-  if (lotteryEntries.length <= 3) {
+  if (lotteryEntries.length < 4) {
     console.warn(
       'Impossible to carry out the draw as at least 4 participants are required (fairness)'
     );
 
-    return false;
+    return;
   }
 
-  console.log('Determining winners...');
+  console.info('Determining winners...');
   const winnersIds = getRandomSubset(lotteryEntries.length, numberOfPossiblesWinners);
 
   winnersIds.forEach((winnerId, index) => (lotteryEntries[winnerId].winnerRank = index + 1));
-  console.log('Winners determined!');
+  console.info('Winners determined!');
 
   lotteryData.drawExecuted = true;
 }
