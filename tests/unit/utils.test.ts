@@ -1,6 +1,3 @@
-import assert from 'assert';
-import {describe, it} from 'node:test';
-
 import {getRandomSubset} from '../../src/utils.js';
 
 describe('Tests on utils functions', () => {
@@ -14,7 +11,7 @@ describe('Tests on utils functions', () => {
       const result = getRandomSubset(arraySize, subSetSize);
 
       // Then
-      assert.deepStrictEqual(result, []);
+      expect(result).toEqual([]);
     });
 
     it('returns an empty array when arraySize is 0', () => {
@@ -26,7 +23,7 @@ describe('Tests on utils functions', () => {
       const result = getRandomSubset(arraySize, subSetSize);
 
       // Then
-      assert.deepStrictEqual(result, []);
+      expect(result).toEqual([]);
     });
 
     it('returns a subset of the correct size', () => {
@@ -38,7 +35,7 @@ describe('Tests on utils functions', () => {
       const result = getRandomSubset(arraySize, subSetSize);
 
       // Then
-      assert.strictEqual(result.length, subSetSize);
+      expect(result.length).toBe(subSetSize);
     });
 
     it('returns a subset with unique values', () => {
@@ -51,7 +48,7 @@ describe('Tests on utils functions', () => {
       const uniqueSet = new Set(result);
 
       // Then
-      assert.strictEqual(uniqueSet.size, subSetSize);
+      expect(uniqueSet.size).toBe(subSetSize);
     });
 
     it('returns a subset within the range of arraySize', () => {
@@ -64,8 +61,8 @@ describe('Tests on utils functions', () => {
 
       // Then
       result.forEach((item) => {
-        assert(item >= 0);
-        assert(item < arraySize);
+        expect(item).toBeGreaterThanOrEqual(0);
+        expect(item).toBeLessThan(arraySize);
       });
     });
   });
