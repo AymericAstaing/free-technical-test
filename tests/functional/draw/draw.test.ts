@@ -1,5 +1,6 @@
 import {lotteryData_00, lotteryData_01, lotteryData_02} from './draw.data.js';
 import {proceedDraw} from '../../../src/actions/draw.js';
+import * as utils from '../../../src/utils.js';
 
 describe('Tests for proceedDraw action', () => {
   describe('Error cases', () => {
@@ -23,10 +24,11 @@ describe('Tests for proceedDraw action', () => {
 
     it('logs the process of determining winners and updates lotteryData', async () => {
       // When
+      jest.spyOn(utils, 'getRandomSubset').mockReturnValue([0, 2, 3]);
+
       await proceedDraw(lotteryData_02);
 
       // Then
-      console.log('res: ', lotteryData_02);
       expect(lotteryData_02.lotteryEntries[0].winnerRank).toBe(1);
       expect(lotteryData_02.lotteryEntries[1].winnerRank).toBe(-1);
       expect(lotteryData_02.lotteryEntries[2].winnerRank).toBe(2);
