@@ -8,9 +8,10 @@
   "scripts": {
     "start": "node --loader ts-node/esm src/index.ts",
     "lint": "eslint src/**/*.ts --fix",
-    "test": "node --test --loader ts-node/esm tests/**/*.ts"
+    "test": "glob -c \"node --test --loader ts-node/esm --no-warnings\" \"./tests/**/*test.ts\""
   },
   "dependencies": {
+    "glob": "^10.3.10",
     "inquirer": "^9.0.0",
     "typescript": "^5.2.2"
   },

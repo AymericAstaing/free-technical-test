@@ -22,6 +22,7 @@ export async function proceedDraw(lotteryData: LotteryData) {
   console.info('Determining winners...');
   const winnersIds = getRandomSubset(lotteryEntries.length, numberOfPossiblesWinners);
 
+  console.log('X id: ', winnersIds);
   winnersIds.forEach((winnerId, index) => (lotteryEntries[winnerId].winnerRank = index + 1));
   console.info('Winners determined!');
 
