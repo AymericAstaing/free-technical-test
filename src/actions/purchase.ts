@@ -33,7 +33,11 @@ export async function proceedPurchase(lotteryData: LotteryData) {
     winnerRank: -1,
   };
 
-  lotteryEntries.push(userLotteryTicket);
+  lotteryEntries.push({
+    userName: answer.name,
+    entryNumber: lotteryEntries.length + 1,
+    winnerRank: -1,
+  });
 
   console.log(
     `Thank you ${userLotteryTicket.userName}, ticket successfully purchased! Your ticket and the associated ball are numbered: ${userLotteryTicket.entryNumber}.`

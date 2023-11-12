@@ -1,7 +1,9 @@
-import {lotteryData_00} from './purchase.data.js';
+import {lotteryData_00, lotteryData_01} from './purchase.data.js';
 import {proceedPurchase} from '../../../src/actions/purchase.js';
-import {LotteryData} from '../../../src/types.js';
+import {LotteryData, LotteryEntry} from '../../../src/types.js';
 import {getRandomName} from '../../constants.js';
+
+const inquirer = require('inquirer');
 
 jest.mock('inquirer');
 
@@ -16,7 +18,7 @@ describe('Tests for proceedPurchase action', () => {
       expect(lotteryData_00.drawExecuted).toBe(true);
     });
 
-    it('should handle all tickets sold out', async () => {
+    it('should do nothing when all tickets are sold out', async () => {
       // Given
       const lotteryData: LotteryData = {
         drawExecuted: false,
@@ -31,36 +33,32 @@ describe('Tests for proceedPurchase action', () => {
         });
       }
 
+      const initialLength = lotteryData.lotteryEntries.length;
+
       // When
       await proceedPurchase(lotteryData);
 
       // Then
+      expect(lotteryData.lotteryEntries.length).toBe(initialLength);
       expect(lotteryData.drawExecuted).toBe(false);
     });
+  });
 
-    /*     describe('Success cases', () => {
-      it('should successfully proceed with the purchase', async () => {
-        const mockData = {
-          lotteryEntries: [],
-          drawExecuted: false,
-        };
+  describe('Success cases', () => {
+    it('should proceed purchase and append Jean on lotteryData', async () => {
+      // Given
+      inquirer.prompt = () => Promise.resolve({name: 'Jean'});
 
-        const mockUserName = 'John Doe';
+      // When
+      await proceedPurchase(lotteryData_01);
 
-        // Mock inquirer.prompt to return a predefined answer
-        require('inquirer').prompt.mockResolvedValueOnce({name: mockUserName});
-
-        console.log = jest.fn(); // Mock the console.log function
-
-        await proceedPurchase(mockData);
-
-        expect(mockData.lotteryEntries.length).toBe(1);
-        expect(mockData.lotteryEntries[0].userName).toBe(mockUserName);
-
-        expect(console.log).toHaveBeenCalledWith(
-          expect.stringContaining(`Thank you ${mockUserName}, ticket successfully purchased!`)
-        );
-      });
-    }); */
+      expect(lotteryData_01.lotteryEntries.length).toBe(1);
+      const expectedLotteryEntry: LotteryEntry = {
+        userName: 'Jean',
+        entryNumber: 1,
+        winnerRank: -1,
+      };
+      expect(lotteryData_01.lotteryEntries[0]).toStrictEqual(expectedLotteryEntry);
+    });
   });
 });
