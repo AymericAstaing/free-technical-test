@@ -9,4 +9,5 @@ export type LotteryEntry = {
 export type LotteryData = {
   lotteryEntries: LotteryEntry[];
   drawExecuted: boolean;
+  prizePool: number;
 };

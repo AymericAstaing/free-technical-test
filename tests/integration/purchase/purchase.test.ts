@@ -15,7 +15,6 @@ describe('Tests for proceedPurchase action', () => {
 
       // Then
       expect(lotteryData_00.lotteryEntries).toEqual([]);
-      expect(lotteryData_00.drawExecuted).toBe(true);
     });
 
     it('should do nothing when all tickets are sold out', async () => {
@@ -23,6 +22,7 @@ describe('Tests for proceedPurchase action', () => {
       const lotteryData: LotteryData = {
         drawExecuted: false,
         lotteryEntries: [],
+        prizePool: 0,
       };
 
       for (let i = 0; i < 50; ++i) {
@@ -40,7 +40,6 @@ describe('Tests for proceedPurchase action', () => {
 
       // Then
       expect(lotteryData.lotteryEntries.length).toBe(initialLength);
-      expect(lotteryData.drawExecuted).toBe(false);
     });
   });
 

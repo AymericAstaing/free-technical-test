@@ -1,10 +1,11 @@
 import {LotteryData} from '../../../src/types.js';
 
-export const lotteryData_00: LotteryData = {lotteryEntries: [], drawExecuted: true};
+export const lotteryData_00: LotteryData = {lotteryEntries: [], drawExecuted: true, prizePool: 0};
 
 export const lotteryData_01: LotteryData = {
   lotteryEntries: [{userName: 'Paul', entryNumber: 1, winnerRank: -1}],
   drawExecuted: false,
+  prizePool: 0,
 };
 
 export const lotteryData_02: LotteryData = {
@@ -15,4 +16,5 @@ export const lotteryData_02: LotteryData = {
     {userName: 'Leo', entryNumber: 4, winnerRank: -1},
   ],
   drawExecuted: false,
+  prizePool: 0,
 };

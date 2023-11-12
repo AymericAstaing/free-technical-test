@@ -3,12 +3,14 @@ import inquirer from 'inquirer';
 import {proceedDraw} from './actions/draw.js';
 import {proceedPurchase} from './actions/purchase.js';
 import {displayWinners} from './actions/winners.js';
+import {initialPrizePool} from './constants.js';
 import {LotteryData} from './types.js';
 
 async function main() {
   const lotteryData: LotteryData = {
     lotteryEntries: [],
     drawExecuted: false,
+    prizePool: initialPrizePool,
   };
 
   const possibleActions = ['Purchase', 'Draw', 'Winners', 'Exit'];

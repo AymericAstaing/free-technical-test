@@ -1,6 +1,6 @@
 import inquirer from 'inquirer';
 
-import {entriesPerDraw} from '../constants.js';
+import {entriesPerDraw, entryPrice} from '../constants.js';
 import {LotteryData, LotteryEntry} from '../types.js';
 
 export async function proceedPurchase(lotteryData: LotteryData) {
@@ -39,7 +39,14 @@ export async function proceedPurchase(lotteryData: LotteryData) {
     winnerRank: -1,
   });
 
+  // Increase total prize
+  lotteryData.prizePool += entryPrice;
+
   console.log(
-    `Thank you ${userLotteryTicket.userName}, ticket successfully purchased! Your ticket and the associated ball are numbered: ${userLotteryTicket.entryNumber}.`
+    `Thank you ${
+      userLotteryTicket.userName
+    }, ticket successfully purchased! Your ticket and the associated ball are numbered: ${
+      userLotteryTicket.entryNumber
+    }. Total prize is ${Math.round(lotteryData.prizePool / 2)} now!`
   );
 }

@@ -1,7 +1,8 @@
+import {winningPrizesRates} from '../constants.js';
 import {LotteryData, LotteryEntry} from '../types.js';
 
 export function displayWinners(lotteryData: LotteryData) {
-  const {lotteryEntries, drawExecuted} = lotteryData;
+  const {lotteryEntries, drawExecuted, prizePool} = lotteryData;
 
   if (!drawExecuted) {
     console.log(
@@ -11,20 +12,26 @@ export function displayWinners(lotteryData: LotteryData) {
     return;
   }
 
-  const winnerFirst = lotteryEntries.find((entry: LotteryEntry) => entry.winnerRank === 1);
-  const winnerSecond = lotteryEntries.find((entry: LotteryEntry) => entry.winnerRank === 2);
-  const winnerThird = lotteryEntries.find((entry: LotteryEntry) => entry.winnerRank === 3);
+  const findEntryByRank = (rank: number) => {
+    return lotteryEntries.find((entry: LotteryEntry) => entry.winnerRank === rank);
+  };
 
-  console.log(`
-  CodeCraft Challenge Results
+  const winnerRank1 = findEntryByRank(1);
+  const winnerRank2 = findEntryByRank(2);
+  const winnerRank3 = findEntryByRank(3);
 
-  1st ball: ${winnerFirst?.entryNumber}
-  2nd ball: ${winnerSecond?.entryNumber}
-  3rd ball: ${winnerThird?.entryNumber}
+  const firstPrize = Math.round((prizePool / 2) * winningPrizesRates[0]);
+  const secondPrize = Math.round((prizePool / 2) * winningPrizesRates[1]);
+  const thirdPrize = Math.round((prizePool / 2) * winningPrizesRates[2]);
+
+  console.log(`CodeCraft Challenge Results
+
+  1st ball: ${winnerRank1?.entryNumber}
+  2nd ball: ${winnerRank2?.entryNumber}
+  3rd ball: ${winnerRank3?.entryNumber}
 
   Winners:
-  [First Name 1] : ${winnerFirst?.userName}
-  [First Name 2] : ${winnerSecond?.userName}
-  [First Name 3] : ${winnerThird?.userName}
-`);
+  ${winnerRank1?.userName}: ${firstPrize}
+  ${winnerRank2?.userName}: ${secondPrize}
+  ${winnerRank3?.userName}: ${thirdPrize}`);
 }
