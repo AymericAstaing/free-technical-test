@@ -11,9 +11,10 @@ export async function proceedDraw(lotteryData: LotteryData) {
     return;
   }
 
-  if (lotteryEntries.length < 4) {
+  const minimumEntriesNbr = numberOfPossiblesWinners + 1;
+  if (lotteryEntries.length < minimumEntriesNbr) {
     console.warn(
-      'Impossible to carry out the draw as at least 4 participants are required (fairness)'
+      `Impossible to carry out the draw as at least ${minimumEntriesNbr} participants are required (fairness)`
     );
 
     return;
