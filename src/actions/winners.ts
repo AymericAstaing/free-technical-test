@@ -31,7 +31,7 @@ export function displayWinners(lotteryData: LotteryData) {
   3rd ball: ${winnerRank3?.entryNumber}
 
   Winners:
-  ${winnerRank1?.userName}: ${firstPrize}
-  ${winnerRank2?.userName}: ${secondPrize}
-  ${winnerRank3?.userName}: ${thirdPrize}`);
+  ${winnerRank1?.userName}: ${firstPrize}€
+  ${winnerRank2?.userName}: ${secondPrize}€
+  ${winnerRank3?.userName}: ${thirdPrize}€`);
 }

@@ -30,9 +30,9 @@ describe('Tests for displayWinners action', () => {
           '  2nd ball: 1\n' +
           '  3rd ball: 4\n\n' +
           '  Winners:\n' +
-          '  Louis: 83\n' +
-          '  Paul: 17\n' +
-          '  Leo: 11'
+          '  Louis: 83€\n' +
+          '  Paul: 17€\n' +
+          '  Leo: 11€'
       );
     });
 
@@ -47,9 +47,9 @@ describe('Tests for displayWinners action', () => {
           '  2nd ball: 3\n' +
           '  3rd ball: 2\n\n' +
           '  Winners:\n' +
-          '  Alix: 84\n' +
-          '  Louis: 17\n' +
-          '  David: 11'
+          '  Alix: 84€\n' +
+          '  Louis: 17€\n' +
+          '  David: 11€'
       );
     });
   });
