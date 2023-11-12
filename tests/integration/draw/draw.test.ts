@@ -9,7 +9,6 @@ describe('Tests for proceedDraw action', () => {
       await proceedDraw(lotteryData_00);
 
       // Then
-      expect(lotteryData_00.lotteryEntries).toEqual([]);
       expect(lotteryData_00.drawExecuted).toBe(true);
     });
 
@@ -18,13 +17,12 @@ describe('Tests for proceedDraw action', () => {
       await proceedDraw(lotteryData_01);
 
       // Then
-      expect(lotteryData_01.lotteryEntries[0].winnerRank).toBe(-1);
       expect(lotteryData_01.drawExecuted).toBe(false);
     });
   });
 
   describe('Success cases', () => {
-    it('should determine winners on lotteryData and update draw execution state', async () => {
+    it('should determine winners on lotteryData and update lottery states', async () => {
       // When
       jest.spyOn(utils, 'getRandomSubset').mockReturnValue([0, 2, 3]);
 

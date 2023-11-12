@@ -8,10 +8,13 @@ The CodeCraft Challenge Lottery System is a command-line program designed to mod
 
 Useful information:
 
+```
 - By default, the kitty contains 200 euros
 - Participation costs 5 euros
+- Currency is in euros (€)
 - One more person than the total number of winners is needed to launch the draw
 - It is possible to have tickets with the same username
+```
 
 ## Actions
 
@@ -36,6 +39,7 @@ Winners are presented in a formatted manner, showing first names and prize amoun
 
 - Node.js ^20 LTS
 - Npm
+- Inquirer ^8.0.1
 
 ### JS-World libraries
 
@@ -63,6 +67,12 @@ Winners are presented in a formatted manner, showing first names and prize amoun
 
 ### Development
 
+For the very first time, run:
+
+```sh
+npm i
+```
+
 Start the lottery prompt:
 
 ```sh
@@ -86,6 +96,6 @@ To run tests, simply execute:
 npm test
 ```
 
-## Authors
+## Author
 
 - Aymeric Astaing

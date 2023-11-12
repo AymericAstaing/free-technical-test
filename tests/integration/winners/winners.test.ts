@@ -36,7 +36,7 @@ describe('Tests for displayWinners action', () => {
       );
     });
 
-    it('should display winners with correct data with decimal numbers', async () => {
+    it('should display winners with correct data (decimal numbers)', async () => {
       // When
       await displayWinners(lotteryData_02);
 

@@ -16,5 +16,5 @@ export const lotteryData_02: LotteryData = {
     {userName: 'Leo', entryNumber: 4, winnerRank: -1},
   ],
   drawExecuted: false,
-  prizePool: 0,
+  prizePool: 220,
 };

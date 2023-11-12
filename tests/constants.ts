@@ -1,6 +1,6 @@
 const randomNames = [
   'Louise',
-  'Rémi, Léo',
+  'Rémi',
   'Lucie',
   'Julien',
   'Jean',

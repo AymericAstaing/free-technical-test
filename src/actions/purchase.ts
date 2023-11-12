@@ -16,6 +16,7 @@ export async function proceedPurchase(lotteryData: LotteryData) {
 
   if (lotteryEntries.length === entriesPerDraw) {
     console.log('Unfortunately, all the raffle tickets were sold out. Come back next month.');
+
     return;
   }
 
@@ -47,6 +48,6 @@ export async function proceedPurchase(lotteryData: LotteryData) {
       userLotteryTicket.userName
     }, ticket successfully purchased! Your ticket and the associated ball are numbered: ${
       userLotteryTicket.entryNumber
-    }. Total prize is ${Math.round(lotteryData.prizePool / 2)} now!`
+    }. Total prize is ${Math.round(lotteryData.prizePool / 2)}€ now!`
   );
 }

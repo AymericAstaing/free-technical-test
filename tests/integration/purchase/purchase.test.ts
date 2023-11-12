@@ -1,5 +1,6 @@
 import {lotteryData_00, lotteryData_01} from './purchase.data.js';
 import {proceedPurchase} from '../../../src/actions/purchase.js';
+import {entriesPerDraw} from '../../../src/constants.js';
 import {LotteryData, LotteryEntry} from '../../../src/types.js';
 import {getRandomName} from '../../constants.js';
 
@@ -25,7 +26,7 @@ describe('Tests for proceedPurchase action', () => {
         prizePool: 0,
       };
 
-      for (let i = 0; i < 50; ++i) {
+      for (let i = 0; i < entriesPerDraw; ++i) {
         lotteryData.lotteryEntries.push({
           userName: getRandomName(),
           entryNumber: i,
@@ -45,13 +46,13 @@ describe('Tests for proceedPurchase action', () => {
 
   describe('Success cases', () => {
     it('should proceed purchase and append Jean on lotteryData', async () => {
-      // Given
-      inquirer.prompt = () => Promise.resolve({name: 'Jean'});
-
       // When
+      inquirer.prompt = () => Promise.resolve({name: 'Jean'});
       await proceedPurchase(lotteryData_01);
 
+      // Then
       expect(lotteryData_01.lotteryEntries.length).toBe(1);
+
       const expectedLotteryEntry: LotteryEntry = {
         userName: 'Jean',
         entryNumber: 1,
